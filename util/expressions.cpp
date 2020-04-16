@@ -46,6 +46,7 @@
 #include <unistd.h>
 #else
 // Windows support is probably very fragile
+#include <dirent.h>
 #include <windows.h>
 #endif
 
@@ -143,7 +144,7 @@ bool isIgnorable(const std::string &f) {
     return false;
 }
 
-#ifndef _WIN32
+#if !defined(_WIN32)
 void loadExpressions(const string &inPath, ExpressionMap &exprMap) {
     // Is our input path a file or a directory?
     struct stat st;
